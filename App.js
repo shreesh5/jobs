@@ -4,6 +4,8 @@ import { StyleSheet, Text, View } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { Provider } from 'react-redux';
+import store from './src/store';
 
 import WelcomeScreen from './src/screens/WelcomeScreen';
 import AuthScreen from './src/screens/AuthScreen';
@@ -34,8 +36,10 @@ const App = createAppContainer(AuthNavigator)
 export default () => {
   return (
     <>
-      <StatusBar style="auto" />
-      <App />
+      <Provider store={store}>
+        <StatusBar style="auto" />
+        <App />
+      </Provider>
     </>
   )
 }
