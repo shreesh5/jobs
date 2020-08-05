@@ -1,12 +1,13 @@
-import React, { useEffect } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
-import { connect } from 'react-redux'
-import * as actions from '../actions'
+import React, { useEffect, useContext } from 'react'
+import { StyleSheet, Text, View, Button } from 'react-native'
+import { Context as AuthContext } from '../context/AuthContext'
 
 const AuthScreen = () => {
     
+    const { facebookLogin } = useContext(AuthContext)
+
     useEffect(() => {
-        actions.facebookLogin()
+        facebookLogin()
     }, [])
     
     return (
@@ -16,7 +17,7 @@ const AuthScreen = () => {
     )
 }
 
-export default connect(null, actions)(AuthScreen)
+export default AuthScreen
 
 const styles = StyleSheet.create({
     container: {

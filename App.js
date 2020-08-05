@@ -4,8 +4,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
-import { Provider } from 'react-redux';
-import store from './src/store';
+import { Provider as AuthProvider } from './src/context/AuthContext' 
 
 import WelcomeScreen from './src/screens/WelcomeScreen';
 import AuthScreen from './src/screens/AuthScreen';
@@ -36,10 +35,10 @@ const App = createAppContainer(AuthNavigator)
 export default () => {
   return (
     <>
-      <Provider store={store}>
+      <AuthProvider>
         <StatusBar style="auto" />
         <App />
-      </Provider>
+      </AuthProvider>
     </>
   )
 }

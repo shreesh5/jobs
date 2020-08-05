@@ -1,5 +1,7 @@
 import { AsyncStorage } from 'react-native';
-import { Facebook } from 'expo'
+// import { Facebook } from 'expo'
+
+import * as Facebook from 'expo-facebook'
 
 import {
     FACEBOOK_LOGIC_SUCCESS,
@@ -25,12 +27,11 @@ const doFacebookLogin = async (dispatch) => {
     } catch ({ message }) {
         alert(`Facebook Login Error: ${message}`)
     }
-
-
 }
 
 export const facebookLogin = () => async (dispatch) => {     
     const token = await AsyncStorage.getItem('fb_token')
+    console.log('token', token)
     if (token) {
         // Dispatch an action saying FB login is done
         dispatch({ type: FACEBOOK_LOGIC_SUCCESS, payload: token })
