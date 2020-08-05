@@ -18,19 +18,23 @@ const ReviewNavigator = createStackNavigator({
   Settings: SettingsScreen
 })
 
-const MainNavigator = createBottomTabNavigator({
+const TabNavigator = createBottomTabNavigator({
   Map: MapScreen,
   Deck: DeckScreen,
   Review: ReviewNavigator
 })
 
-const AuthNavigator = createBottomTabNavigator({
+const MainNavigator = createBottomTabNavigator({
   Welcome: WelcomeScreen,
   Auth: AuthScreen,
-  Main: MainNavigator
+  Main: TabNavigator
+}, {
+  defaultNavigationOptions: {
+    tabBarVisible: false
+  }
 })
 
-const App = createAppContainer(AuthNavigator)
+const App = createAppContainer(MainNavigator)
 
 export default () => {
   return (
