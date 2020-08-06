@@ -44,7 +44,7 @@ const facebookLogin = (dispatch) => {
             dispatch({ type: 'add_error'})
         }
     }
-}    
+}
 
 export const { Context, Provider } = createDataContext(
     authReducer,

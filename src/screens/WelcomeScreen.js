@@ -1,6 +1,8 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import React, { useEffect, useState } from 'react'
+import { StyleSheet, Text, View, AsyncStorage } from 'react-native'
 import Slides from '../components/Slides'
+import _ from 'lodash'
+import { AppLoading } from 'expo'
 
 const SLIDE_DATA = [
     {
@@ -19,17 +21,40 @@ const SLIDE_DATA = [
 
 const WelcomeScreen = ({ navigation }) => {
 
+    const [token, setToken] = useState(null)
+
     const onSlidesComplete = () => {
         navigation.navigate('Auth')
     }
 
+    const checkForToken = async () => {
+        const t = await AsyncStorage.getItem('fb_token')
+        if (t) {
+            navigation.navigate('Map')
+            setToken(t)
+        } else {
+            setToken(false)
+        }
+    }
+
+    useEffect( () => {
+        checkForToken()
+    },[])
+
     return (
-        <View style={styles.container}>
-            <Slides 
-                data={SLIDE_DATA} 
-                onComplete={onSlidesComplete}
-            />
-        </View>
+        <>
+            { _.isNull(token) ? (
+                <AppLoading />
+            ) : (
+                <View style={styles.container}>
+                    <Slides 
+                        data={SLIDE_DATA} 
+                        onComplete={onSlidesComplete}
+                    />
+                </View>
+            )
+            }
+        </>
     )
 }
 

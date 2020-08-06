@@ -9,7 +9,7 @@ const AuthScreen = ({ navigation }) => {
     useEffect(() => {
         facebookLogin()
         onAuthComplete(token)
-        AsyncStorage.removeItem('fb_token')
+        // AsyncStorage.removeItem('fb_token')
     }, [])
 
     useEffect(() => {
