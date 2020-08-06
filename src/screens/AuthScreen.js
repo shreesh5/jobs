@@ -1,15 +1,27 @@
 import React, { useEffect, useContext } from 'react'
-import { StyleSheet, Text, View, Button } from 'react-native'
+import { StyleSheet, Text, View, AsyncStorage } from 'react-native'
 import { Context as AuthContext } from '../context/AuthContext'
 
-const AuthScreen = () => {
+const AuthScreen = ({ navigation }) => {
     
-    const { facebookLogin } = useContext(AuthContext)
+    const { state: { token }, facebookLogin } = useContext(AuthContext)
 
     useEffect(() => {
         facebookLogin()
+        onAuthComplete(token)
+        AsyncStorage.removeItem('fb_token')
     }, [])
+
+    useEffect(() => {
+        onAuthComplete(token)
+    },[token])
     
+    const onAuthComplete = (token) => {
+        if (token) {
+            navigation.navigate('Map')
+        }
+    }
+
     return (
         <View style={styles.container}>
             <Text>Auth Screen</Text>
