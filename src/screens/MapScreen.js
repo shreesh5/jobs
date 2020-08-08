@@ -16,6 +16,10 @@ const MapScreen = () => {
         setRegion(region)
     }
 
+    const onButtonPress = () => {
+        // fetchJobs(region)
+    }
+
     return (
         <View style={styles.container}>
             <MapView 
@@ -25,10 +29,10 @@ const MapScreen = () => {
             />
             <View style={styles.buttonContainer}>
                 <Button
-                    large
                     title="Search This Area"
-                    backgroundColor="#009688"
+                    backgroundColor={"#009688"}
                     icon={{ name: 'search' }}
+                    // onPress = {onButtonPress}
                 />
             </View>
         </View>
@@ -45,9 +49,9 @@ const styles = StyleSheet.create({
         flex: 1
     },
     buttonContainer: {
-        position: absolute,
+        position: 'absolute',
         bottom: 20,
-        left: 0,
-        right: 0
+        left: 30,
+        right: 30
     }
 })
