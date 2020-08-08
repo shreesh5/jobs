@@ -17,7 +17,7 @@ const JOB_QUERY_PARAMS = {
 const jobReducer = (state, action) => {
     switch(action.type) {
         case 'fetch_jobs':
-
+            return action.payload
         default:
             return state
     }
@@ -45,5 +45,7 @@ const fetchJobs = (region) => {
 export const { Context, Provider } = createDataContext(
     jobReducer,
     { fetchJobs },
-    { }
+    {
+        results: []
+     }
 )

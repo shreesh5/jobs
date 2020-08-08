@@ -5,6 +5,7 @@ import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { Provider as AuthProvider } from './src/context/AuthContext' 
+// import { Provider as JobProvider } from './src/context/JobContext'
 
 import WelcomeScreen from './src/screens/WelcomeScreen';
 import AuthScreen from './src/screens/AuthScreen';
@@ -39,10 +40,12 @@ const App = createAppContainer(MainNavigator)
 export default () => {
   return (
     <>
+      {/*<JobProvider>*/}
       <AuthProvider>
         <StatusBar style="auto" />
         <App />
       </AuthProvider>
+      {/*</JobProvider>*/}
     </>
   )
 }
