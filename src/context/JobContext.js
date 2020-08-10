@@ -2,6 +2,7 @@ import createDataContext from './createDataContext'
 import axios from 'axios'
 import reverseGeocode from 'latlng-to-zip'
 import qs from 'qs'
+import JOB_DATA from '../data/IndeedJobData.json'
 
 const JOB_ROOT_URL = ''
 
@@ -31,9 +32,10 @@ const buildJobsUrl = (zip) => {
 const fetchJobs = (region, callback) => {
     return async (dispatch) => {
         try {
-            const zip = await reverseGeocode(region)
-            const url = buildJobsUrl(zip)
-            const { data } = await axios.get(url)
+            // const zip = await reverseGeocode(region)
+            // const url = buildJobsUrl(zip)
+            // const { data } = await axios.get(url)
+            const data = JOB_DATA
             dispatch({ type: 'fetch_jobs', payload: data })
             console.log(data)
             callback()
@@ -48,5 +50,5 @@ export const { Context, Provider } = createDataContext(
     { fetchJobs },
     {
         results: []
-     }
+    }
 )
