@@ -2,11 +2,11 @@ import React, { useState, useContext } from 'react'
 import { StyleSheet, View } from 'react-native'
 import MapView  from 'react-native-maps'
 import { Button } from 'react-native-elements'
-// import { Context as JobContext } from '../context/JobContext'
+import { Context as JobContext } from '../context/JobContext'
 
 const MapScreen = ({ navigation }) => {
 
-    // const { fetchJobs } = useContext(JobContext)
+    const { fetchJobs } = useContext(JobContext)
 
     const [region, setRegion] = useState({
         longitude: -122,
@@ -20,7 +20,7 @@ const MapScreen = ({ navigation }) => {
     }
 
     const onButtonPress = () => {
-        // fetchJobs(region, () => { navigation.navigate('Deck) })
+        fetchJobs(region, () => { navigation.navigate('Deck') })
     }
 
     return (
@@ -35,7 +35,7 @@ const MapScreen = ({ navigation }) => {
                     title="Search This Area"
                     buttonStyle={{ backgroundColor:"#009688" }}
                     icon={{ name: 'search' }}
-                    // onPress = {onButtonPress}
+                    onPress = {onButtonPress}
                 />
             </View>
         </View>
