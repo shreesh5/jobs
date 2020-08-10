@@ -41,10 +41,10 @@ export default () => {
   return (
     <>
       {/*<JobProvider>*/}
-      <AuthProvider>
-        <StatusBar style="auto" />
-        <App />
-      </AuthProvider>
+        <AuthProvider>
+          <StatusBar style="auto" />
+          <App />
+        </AuthProvider>
       {/*</JobProvider>*/}
     </>
   )
