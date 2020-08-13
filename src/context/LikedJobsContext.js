@@ -7,6 +7,8 @@ const likedJobsReducer = (state, action) => {
             return _.uniqBy([
                 action.payload, ...state
             ], 'jobkey')
+        case 'clear_liked_jobs':
+            return []
         default:
             return state
     }
@@ -19,8 +21,14 @@ const likeJob = (dispatch) => {
     }
 }
 
+const clearLikedJobs = (dispatch) => {
+    return () => {
+        dispatch({ type: 'clear_liked_jobs' })
+    }
+}
+
 export const { Context, Provider } = createDataContext(
     likedJobsReducer,
-    { likeJob },
+    { likeJob, clearLikedJobs },
     []
 )
