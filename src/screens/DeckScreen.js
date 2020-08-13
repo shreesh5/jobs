@@ -51,13 +51,11 @@ const DeckScreen = () => {
     return (
         <View>
             <Text>Deck Screen</Text>
-            {/* 
-                <Swipe 
-                    data={results}
-                    renderCard={renderCard}
-                    renderNoMoreCards={renderNoMoreCards}
-                />
-            */}
+            <Swipe 
+                data={results}
+                renderCard={renderCard}
+                renderNoMoreCards={renderNoMoreCards}
+            />
         </View>
     )
 }
