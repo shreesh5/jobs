@@ -61,23 +61,16 @@ const ReviewScreen = ({ navigation }) => {
     )
 }
 
-ReviewScreen.navigationOptions = ({ navigation }) => {
-    return {
-        title: 'Review Jobs',
-        headerRight: () => (
-            <Button 
-                title="Settings" 
-                onPress={() => navigation.navigate('Settings')}
-                type="clear"
-            />
-        ),
-        tabBarIcon: ({ tintColor }) => (<Icon name="favorite" size={30} color={tintColor}/>),
-        tabBarOptions: {
-            activeTintColor: 'blue',
-            inactiveTintColor: 'gray',
-        },
-    }
-}
+ReviewScreen.navigationOptions = ({ navigation }) => ({
+    title: 'Review Jobs',
+    headerRight: () => (
+        <Button 
+            title="Settings" 
+            onPress={() => navigation.navigate('Settings')}
+            type="clear"
+        />
+    )
+})
 
 export default ReviewScreen
 

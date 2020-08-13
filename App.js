@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { SafeAreaView } from 'react-native';
+import { Icon } from 'react-native-elements';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
@@ -25,6 +25,15 @@ const TabNavigator = createBottomTabNavigator({
   Deck: DeckScreen,
   Review: ReviewNavigator
 })
+
+ReviewNavigator.navigationOptions = {
+  title: 'Review',
+  tabBarIcon: ({ tintColor }) => (<Icon name="favorite" size={30} color={tintColor}/>),
+  tabBarOptions: {
+      activeTintColor: 'blue',
+      inactiveTintColor: 'gray',
+  },
+}
 
 const MainNavigator = createBottomTabNavigator({
   Welcome: WelcomeScreen,
