@@ -12,7 +12,7 @@ const SettingsScreen = () => {
             <Text>Settings Screen</Text>
             <Button 
                 title="Reset Liked Jobs"
-                icon={{ name: 'delete' }}
+                icon={{ name: 'delete-forever' }}
                 buttonStyle={{ backgroundColor: "#F44336" }}
                 onPress={clearLikedJobs}
             />

@@ -6,7 +6,7 @@ import MapView  from 'react-native-maps'
 import { Card, Button } from 'react-native-elements'
 import { Context as LikedJobsContext } from '../context/LikedJobsContext'
 
-const DeckScreen = () => {
+const DeckScreen = ({ navigation }) => {
 
     const { state: { results } } = useContext(JobContext)
     const { likeJob } = useContext(LikedJobsContext)
@@ -47,8 +47,12 @@ const DeckScreen = () => {
 
     const renderNoMoreCards = () => {
         return (
-            <Card title="No more jobs">
-
+            <Card title="No More Jobs">
+                <Button 
+                    title="Back To Map"
+                    icon={{ name: 'my-location' }}
+                    onPress={() => navigation.navigate('Map')}
+                />
             </Card>
         )
     }
@@ -56,7 +60,6 @@ const DeckScreen = () => {
     return (
         <SafeAreaView>
         <View style={styles.container}>
-            <Text>Deck Screen</Text>
             <Swipe 
                 data={results}
                 renderCard={renderCard}

@@ -94,7 +94,6 @@ const Swipe = ({ data, renderCard, renderNoMoreCards, onSwipeLeft, onSwipeRight,
             }
 
             if (i === index) {
-                console.log('JOBKEY', item[keyProp])
                 return (
                     <Animated.View
                         {...panResponder.panHandlers}
