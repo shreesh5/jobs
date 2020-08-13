@@ -5,7 +5,7 @@ const SCREEN_WIDTH = Dimensions.get('window').width
 const SWIPE_THRESHOLD = 0.25 * SCREEN_WIDTH
 const SWIPE_OUT_DURATION = 250
 
-const Swipe = ({ data, renderCard, renderNoMoreCards, onSwipeLeft, onSwipeRight }) => {
+const Swipe = ({ data, renderCard, renderNoMoreCards, onSwipeLeft, onSwipeRight, keyProp }) => {
 
     const [index, setIndex] = useState(0)
     const position = useRef(new Animated.ValueXY()).current
@@ -87,17 +87,18 @@ const Swipe = ({ data, renderCard, renderNoMoreCards, onSwipeLeft, onSwipeRight 
             return renderNoMoreCards();
         }
 
-        const deck = data.map((item, i) => {
+        return data.map((item, i) => {
             
             if (i < index) {
                 return null
             }
 
             if (i === index) {
+                console.log('JOBKEY', item[keyProp])
                 return (
                     <Animated.View
                         {...panResponder.panHandlers}
-                        key={item.id}
+                        key={item[keyProp]}
                         style={[getCardStyle(), styles.cardStyle, { zIndex: i * -1 }]}
                     >
                         {renderCard(item)}
@@ -107,15 +108,15 @@ const Swipe = ({ data, renderCard, renderNoMoreCards, onSwipeLeft, onSwipeRight 
 
             return (
                 <Animated.View 
-                    key={item.id} 
+                    key={item[keyProp]} 
                     style={[styles.cardStyle, { zIndex: i * -1 }]}
                 >
                     {renderCard(item)}
                 </Animated.View>
                 
             )
-        })
-        return Platform.OS === "android" ? deck : deck.reverse()
+        }).reverse()
+        //return Platform.OS === "android" ? deck : deck.reverse()
     }
     
     return (
@@ -131,7 +132,8 @@ Swipe.defaultProps = {
     },
     onSwipeLeft: () => {
         console.log('swiped left')
-    }
+    },
+    keyProp: 'id'
 }
 
 export default Swipe

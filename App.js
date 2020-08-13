@@ -6,6 +6,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { Provider as AuthProvider } from './src/context/AuthContext' 
 import { Provider as JobProvider } from './src/context/JobContext'
+import { Provider as LikedJobsProvider } from './src/context/LikedJobsContext'
 
 import WelcomeScreen from './src/screens/WelcomeScreen';
 import AuthScreen from './src/screens/AuthScreen';
@@ -40,12 +41,14 @@ const App = createAppContainer(MainNavigator)
 export default () => {
   return (
     <>
-      <JobProvider>
-        <AuthProvider>
-          <StatusBar style="auto" />
-          <App />
-        </AuthProvider>
-      </JobProvider>
+      <LikedJobsProvider>
+        <JobProvider>
+          <AuthProvider>
+            <StatusBar style="auto" />
+            <App />
+          </AuthProvider>
+        </JobProvider>
+      </LikedJobsProvider>
     </>
   )
 }

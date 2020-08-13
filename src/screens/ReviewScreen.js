@@ -1,11 +1,33 @@
-import React from 'react'
-import { StyleSheet, Text, View, Platform } from 'react-native'
-import { Button } from 'react-native-elements'
+import React, { useContext, useEffect } from 'react'
+import { StyleSheet, Text, View, Platform, ScrollView } from 'react-native'
+import { Card, Button } from 'react-native-elements'
+import { Context as LikedJobsContext } from '../context/LikedJobsContext'
 
 const ReviewScreen = ({ navigation }) => {
+
+    const { state } = useContext(LikedJobsContext)
+    
+    const renderLikedJobs = () => {
+        return state.map(job => {
+            return (
+                <Card>
+                    <View style={{ height: 200 }}>
+                        <View style={styles.detailWrapper}>
+                            <Text style={styles.italics}>{job.company}</Text>
+                            <Text style={styles.italics}>{job.formattedRelativeTime}</Text>
+                        </View>
+                    </View>
+                </Card>
+            )
+        })
+    }
+
     return (
         <View>
             <Text>Review Screen</Text>
+            <ScrollView>
+                {renderLikedJobs()}
+            </ScrollView>
         </View>
     )
 }
@@ -28,4 +50,13 @@ ReviewScreen.navigationOptions = ({ navigation }) => {
 
 export default ReviewScreen
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    detailWrapper: {
+        marginBottom: 10,
+        flexDirection: 'row',
+        justifyContent: 'space-around'
+    },
+    italics: {
+        fontStyle: 'italic'
+    }
+})

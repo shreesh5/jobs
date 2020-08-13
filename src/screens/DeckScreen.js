@@ -1,16 +1,19 @@
-import React, { useContext } from 'react'
-import { StyleSheet, Text, View, Platform } from 'react-native'
+import React, { useContext, useEffect } from 'react'
+import { StyleSheet, Text, View, Platform, SafeAreaView } from 'react-native'
 import { Context as JobContext } from '../context/JobContext'
 import Swipe from '../components/Swipe'
 import MapView  from 'react-native-maps'
 import { Card, Button } from 'react-native-elements'
+import { Context as LikedJobsContext } from '../context/LikedJobsContext'
 
 const DeckScreen = () => {
 
     const { state: { results } } = useContext(JobContext)
+    const { likeJob } = useContext(LikedJobsContext)
+
 
     const renderCard = (job) => {
-
+        
         const initialRegion = {
             longitude: job.longitude,
             latitude: job.latitude,
@@ -24,8 +27,10 @@ const DeckScreen = () => {
                     <MapView
                         scrollEnabled={false}
                         style={{ flex: 1 }}
-                        cacheEnabled={Platform.OS === 'android' ? true : false}
+                        //cacheEnabled={Platform.OS === 'android' ? true : false}
+                        cacheEnabled={true}
                         initialRegion={initialRegion}
+                        liteMode
                     >
                     </MapView>
                 </View>
@@ -34,7 +39,7 @@ const DeckScreen = () => {
                     <Text>{job.formattedRelativeTime}</Text>
                 </View>
                 <Text>
-                    {job.snippet.replace(/<b>/g, '').replace(/<\/b/g, '')}
+                    {job.snippet.replace(/<b>/g, '').replace(/<\/b>/g, '')}
                 </Text>
             </Card>
         )
@@ -49,14 +54,18 @@ const DeckScreen = () => {
     }
 
     return (
-        <View>
+        <SafeAreaView>
+        <View style={styles.container}>
             <Text>Deck Screen</Text>
             <Swipe 
                 data={results}
                 renderCard={renderCard}
                 renderNoMoreCards={renderNoMoreCards}
+                keyProp="jobkey"
+                onSwipeRight={job => likeJob(job)}
             />
         </View>
+        </SafeAreaView>
     )
 }
 
@@ -67,5 +76,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         marginBottom: 10
+    },
+    container: {
+        justifyContent: 'center',
+        marginTop: 15
     }
 })

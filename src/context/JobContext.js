@@ -37,7 +37,6 @@ const fetchJobs = (dispatch) => {
             // const { data } = await axios.get(url)
             const data = JOB_DATA
             dispatch({ type: 'fetch_jobs', payload: data })
-            console.log(data)
             callback()
         } catch (e) {
             console.error(e)
