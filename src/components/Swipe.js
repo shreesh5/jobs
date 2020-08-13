@@ -1,5 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react'
-import { StyleSheet, View, PanResponder, Animated, Dimensions, UIManager, LayoutAnimation } from 'react-native'
+import { StyleSheet, View, PanResponder, Animated, Dimensions, UIManager, LayoutAnimation, Platform } from 'react-native'
 
 const SCREEN_WIDTH = Dimensions.get('window').width
 const SWIPE_THRESHOLD = 0.25 * SCREEN_WIDTH
@@ -87,7 +87,7 @@ const Swipe = ({ data, renderCard, renderNoMoreCards, onSwipeLeft, onSwipeRight 
             return renderNoMoreCards();
         }
 
-        return data.map((item, i) => {
+        const deck = data.map((item, i) => {
             
             if (i < index) {
                 return null
@@ -114,7 +114,8 @@ const Swipe = ({ data, renderCard, renderNoMoreCards, onSwipeLeft, onSwipeRight 
                 </Animated.View>
                 
             )
-        }).reverse()
+        })
+        return Platform.OS === "android" ? deck : deck.reverse()
     }
     
     return (
