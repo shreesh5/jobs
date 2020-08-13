@@ -125,7 +125,7 @@ const Swipe = ({ data, renderCard, renderNoMoreCards, onSwipeLeft, onSwipeRight 
     )
 }
 
-Deck.defaultProps = {
+Swipe.defaultProps = {
     onSwipeRight: () => {
         console.log('swiped right')
     },
