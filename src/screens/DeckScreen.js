@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Platform, SafeAreaView } from 'react-native'
 import { Context as JobContext } from '../context/JobContext'
 import Swipe from '../components/Swipe'
 import MapView  from 'react-native-maps'
-import { Card, Button } from 'react-native-elements'
+import { Card, Button, Icon } from 'react-native-elements'
 import { Context as LikedJobsContext } from '../context/LikedJobsContext'
 
 const DeckScreen = ({ navigation }) => {
@@ -70,6 +70,15 @@ const DeckScreen = ({ navigation }) => {
         </View>
         </SafeAreaView>
     )
+}
+
+DeckScreen.navigationOptions = {
+    title: 'Jobs',
+    tabBarIcon: ({ tintColor }) => (<Icon name="description" size={30} color={tintColor}/>),
+    tabBarOptions: {
+        activeTintColor: 'blue',
+        inactiveTintColor: 'gray',
+    },
 }
 
 export default DeckScreen

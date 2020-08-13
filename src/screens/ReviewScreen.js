@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { StyleSheet, Text, View, Platform, ScrollView, Linking } from 'react-native'
-import { Card, Button } from 'react-native-elements'
+import { Card, Button, Icon } from 'react-native-elements'
 import { Context as LikedJobsContext } from '../context/LikedJobsContext'
 import MapView from 'react-native-maps'
 
@@ -71,9 +71,11 @@ ReviewScreen.navigationOptions = ({ navigation }) => {
                 type="clear"
             />
         ),
-        style: {
-            marginTop: Platform.OS === 'android' ? 24 : 0
-        }
+        tabBarIcon: ({ tintColor }) => (<Icon name="favorite" size={30} color={tintColor}/>),
+        tabBarOptions: {
+            activeTintColor: 'blue',
+            inactiveTintColor: 'gray',
+        },
     }
 }
 
