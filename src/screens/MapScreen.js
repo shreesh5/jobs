@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { StyleSheet, View } from 'react-native'
 import MapView  from 'react-native-maps'
-import { Button } from 'react-native-elements'
+import { Button, Icon } from 'react-native-elements'
 import { Context as JobContext } from '../context/JobContext'
 
 const MapScreen = ({ navigation }) => {
@@ -40,6 +40,15 @@ const MapScreen = ({ navigation }) => {
             </View>
         </View>
     )
+}
+
+MapScreen.navigationOptions = {
+    title: 'Map',
+    tabBarIcon: ({ tintColor }) => (<Icon name="my-location" size={30} color={tintColor}/>),
+    tabBarOptions: {
+        activeTintColor: 'blue',
+        inactiveTintColor: 'gray',
+    },
 }
 
 export default MapScreen
