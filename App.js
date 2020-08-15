@@ -24,6 +24,12 @@ const TabNavigator = createBottomTabNavigator({
   Map: MapScreen,
   Deck: DeckScreen,
   Review: ReviewNavigator
+}, {
+  tabBarOptions: {
+    labelStyle: { fontSize: 12 }
+  },
+  tabBarPosition: 'bottom',
+  //swipeEnabled: false
 })
 
 ReviewNavigator.navigationOptions = {

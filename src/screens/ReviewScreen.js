@@ -53,7 +53,6 @@ const ReviewScreen = ({ navigation }) => {
 
     return (
         <View>
-            <Text>Review Screen</Text>
             <ScrollView>
                 {renderLikedJobs()}
             </ScrollView>

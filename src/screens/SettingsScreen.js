@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Platform } from 'react-native'
 import { Context as LikedJobsContext } from '../context/LikedJobsContext'
 import { Button } from  'react-native-elements'
 
@@ -9,7 +9,6 @@ const SettingsScreen = () => {
 
     return (
         <View>
-            <Text>Settings Screen</Text>
             <Button 
                 title="Reset Liked Jobs"
                 icon={{ name: 'delete-forever' }}
